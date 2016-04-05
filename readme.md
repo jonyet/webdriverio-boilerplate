@@ -1,4 +1,4 @@
-## gulp-webriver for C3P0
+## gulp-webriver boilerplate
 **UI Automation solution**
 
 qa automation framework using gulp with webdriverio and mocha
