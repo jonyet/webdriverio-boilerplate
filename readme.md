@@ -34,3 +34,7 @@ cd node_modules/wdio-spec-reporter
 npm install
 ```
 now you should be all set!
+
+```
+gulp webdriver:demo
+```
