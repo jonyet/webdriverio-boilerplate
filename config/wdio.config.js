@@ -14,11 +14,12 @@ exports.config = {
     ],
     // Patterns to exclude.
     exclude: [
-      // './specs/campaignFieldPersistence.js',
-      // './specs/summaryDataInts.js',
-      // './specs/summaryUnresIssues.js',
-      // './specs/globalHeader.js',
-      // './specs/summaryDatePersistence.js',
+      './specs/campaignFieldPersistence.js',
+      './specs/summaryDataInts.js',
+      './specs/summaryUnresIssues.js',
+      './specs/globalHeader.js',
+      './specs/summaryDatePersistence.js',
+      // './specs/testSpec.js'
     ],
     //
     // ============
