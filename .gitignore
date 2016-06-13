@@ -26,6 +26,7 @@ node_modules
 screenshots
 errors
 allure-results
+errScreens
 
 # Users Environment Variables
 .lock-wscript
