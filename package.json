@@ -22,7 +22,7 @@
      "wdio-mocha-framework": "^0.2.11",
      "wdio-screenshot": "^0.1.1",
      "wdio-selenium-standalone-service": "0.0.5",
-     "wdio-spec-reporter": "github:webdriverio/wdio-spec-reporter",
+     "wdio-spec-reporter": "github:webdriverio/wdio-spec-reporter"
    },
   "scripts": {
     "test": "gulp webdriver:demo",
