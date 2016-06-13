@@ -10,16 +10,11 @@ exports.config = {
   updateJob: false,
 
   specs: [
-      './specs/*.js'
+      './specs/amazonSpecs/*.js'
   ],
   // Patterns to exclude.
   exclude: [
-    './specs/campaignFieldPersistence.js',
-    './specs/summaryDataInts.js',
-    './specs/summaryUnresIssues.js',
-    './specs/globalHeader.js',
-    './specs/summaryDatePersistence.js',
-    // './specs/testSpec.js'
+    // './specs/amazonSpecs/amazonSearchTest.js'
   ],
 
   capabilities: [{

@@ -5,36 +5,37 @@ qa automation framework using gulp with webdriverio and mocha
 
 **Get started**
 
-install git & nodejs/npm
+install git & nodejs/npm (i suggest via nvm [https://github.com/creationix/nvm/blob/master/README.markdown], using node 4.4.1 & npm 2.14.20)
 
 ```
 git clone https://github.com/jonyet/gulp-webdriverio-boilerplate.git
+
+```
+
+switch to the amazon feature branch
+
+```
+git checkout feature/amazonExample
 ```
 
 get your globals installed:
 
 ```
+npm install -g webdriverio
 npm install -g selenium-standalone
 selenium-standalone install
 selenium-standalone start
-npm install -g webdriverio
 ```
-install your local dependencies
+(open a new terminal because selenium just took over that one)
+
+now install your local dependencies
 
 ```
 npm install
 ```
 
-**Warning**
-
-as it stands right now, you will need to manually build out the wdio-spec-reporter module for this to work:
+and you should be all set!
 
 ```
-cd node_modules/wdio-spec-reporter
-npm install
-```
-now you should be all set!
-
-```
-gulp webdriver:demo
+gulp amazon:demo
 ```
