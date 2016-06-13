@@ -12,22 +12,6 @@ git clone https://github.com/jonyet/gulp-webdriverio-boilerplate.git
 
 ```
 
-switch to the amazon feature branch
-
-```
-git checkout feature/amazonExample
-```
-
-get your globals installed:
-
-```
-npm install -g webdriverio
-npm install -g selenium-standalone
-selenium-standalone install
-selenium-standalone start
-```
-(open a new terminal because selenium just took over that one)
-
 now install your local dependencies
 
 ```
