@@ -11,9 +11,9 @@ describe('Amazon Search Assertion Demo', function () {
     });
 
     it('A user searches for "qa testing" and submits', function () {
-      browser.click('#twotabsearchtextbox');
+      Home.searchBar.click();
       Home.searchBar.keys('qa testing');
-      browser.click('#nav-search > form > div.nav-right > div > input');
+      Home.submitSearch.click();
     });
 
     it('Shows a positive number of results', function(){

@@ -4,7 +4,7 @@ var Resultspage = Object.create(page, {
     /**
      * define elements
      */
-    resultsCount: { get: function () { return browser.elements('#s-result-count'); } },
+    resultsCount: { get: function () { return browser.element('#s-result-count'); } },
     /**
      * define or overwrite page methods
      */
