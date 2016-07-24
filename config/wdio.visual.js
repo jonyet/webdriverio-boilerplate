@@ -63,7 +63,14 @@ exports.config = {
   // Gets executed before test execution begins. At this point you will have access to all global
   // variables like `browser`. It is the perfect place to define custom commands.
   before: function() {
-      // do something
+    var Resembler = require('../lib/Resembler');
+    var resemble = new Resembler();
+
+    browser.addCommand("assertElementLayout", function async (fileName, selector, boolean) {
+      return browser.waitUntil(function(){
+        return resemble.assertElementLayout(fileName, selector, boolean);
+      });
+    });
   },
 
   // Gets executed after all tests are done. You still have access to all global variables from

@@ -1,7 +1,5 @@
 var expect = require('chai').expect;
 var Home = require('../page_objects/amazonPageObjects/amazonhomepage.js');
-var Resembler = require('../lib/Resembler');
-var resemble = new Resembler();
 
 describe('Amazon Homepage CSS checks', function () {
 
@@ -12,9 +10,18 @@ describe('Amazon Homepage CSS checks', function () {
     });
 
     it('The Navigation Bar looks correct', function () {
-      browser.waitUntil(function(){
-        return resemble.assertElementLayout('navbar', Home.navbar, true);
-      });
+      browser.assertElementLayout('navbar', Home.navbar, true);
+    });
+
+    it('The Footer Bar has not changed', function () {
+      browser.assertElementLayout('footCol1', Home.footColOne);
+      browser.assertElementLayout('footCol2', Home.footColTwo);
+    });
+
+    it('The Gridwall content looks correct (omitting column 3)', function () {
+      browser.assertElementLayout('gwCol1', Home.gwColOne);
+      browser.assertElementLayout('gwCol2', Home.gwColTwo);
+      browser.assertElementLayout('gwCol4', Home.gwColFour);
     });
 
 });
