@@ -10,7 +10,7 @@ describe('Amazon Homepage CSS checks', function () {
     });
 
     it('The Navigation Bar looks correct', function () {
-      browser.assertElementLayout('navbar', Home.navbar, true);
+      browser.assertElementLayout('navbar', Home.navbar);
     });
 
     it('The Footer Bar has not changed', function () {
