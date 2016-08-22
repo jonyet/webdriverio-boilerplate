@@ -1,20 +1,18 @@
 var gulp = require('gulp');
 var webdriver = require('gulp-webdriver');
 
-gulp.task('webdriver:suite', ['webdriver:demo']);
+var opts = {
+    logLevel: 'silent',
+    waitforTimeout: 10000,
+    reporter: 'dot'
+};
+
+gulp.task('amazon:suite', ['amazon:demo']);
 
 gulp.task('amazon:demo', function() {
-    return gulp.src('./config/wdio.amazon.js').pipe(webdriver({
-        logLevel: 'silent',
-        waitforTimeout: 35000,
-        reporter: 'spec',
-    }));
+    return gulp.src('./test/config/wdio.amazon.js').pipe(webdriver(opts));
 });
 
-gulp.task('webdriver:demo', function() {
-    return gulp.src('./config/wdio.config.js').pipe(webdriver({
-        logLevel: 'silent',
-        waitforTimeout: 35000,
-        reporter: 'spec',
-    }));
+gulp.task('visual:demo', function() {
+    return gulp.src('./test/config/wdio.visual.js').pipe(webdriver(opts));
 });

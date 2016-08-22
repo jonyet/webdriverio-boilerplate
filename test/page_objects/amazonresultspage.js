@@ -1,4 +1,4 @@
-var page = require('../amazonpage')
+var page = require('./page')
 
 var Resultspage = Object.create(page, {
     /**

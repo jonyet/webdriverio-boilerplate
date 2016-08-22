@@ -10,16 +10,12 @@ exports.config = {
   updateJob: false,
 
   specs: [
-      './specs/*.js'
+      './test/specs/*.js'
   ],
   // Patterns to exclude.
   exclude: [
-    './specs/campaignFieldPersistence.js',
-    './specs/summaryDataInts.js',
-    './specs/summaryUnresIssues.js',
-    './specs/globalHeader.js',
-    './specs/summaryDatePersistence.js',
-    // './specs/testSpec.js'
+    // './test/specs/amazonSearchTest.js',
+    // './test/specs/amazonShoppingCart.js'
   ],
 
   capabilities: [{
@@ -50,7 +46,12 @@ exports.config = {
   },
 
   framework: 'mocha',
-  reporters: ['dot', /*'allure'*/],
+  reporters: ['dot'/*, allure*/],
+    reporterOptions: {
+        allure: {
+            outputDir: './test/reports/allure-results/'
+        }
+    },
 
   mochaOpts: {
       ui: 'bdd',
@@ -69,7 +70,14 @@ exports.config = {
   // Gets executed before test execution begins. At this point you will have access to all global
   // variables like `browser`. It is the perfect place to define custom commands.
   before: function() {
-      // do something
+    var Resembler = require('../lib/Resembler');
+    var resemble = new Resembler();
+
+    browser.addCommand("assertElementLayout", function async (rootdir, fullscreen, fileName, selector, boolean) {
+      return browser.waitUntil(function(){
+        return resemble.assertElementLayout(rootdir, fullscreen, fileName, selector, boolean);
+      }, 55000, "Promise wasn't returned within 60 seconds", 65000);
+    });
   },
 
   // Gets executed after all tests are done. You still have access to all global variables from
