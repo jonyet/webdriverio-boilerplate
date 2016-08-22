@@ -15,7 +15,7 @@ npm install
 and you should be all set!
 
 ```
-node_modules/.bin/gulp amazon:demo
+gulp amazon:demo
 ```
 
 ## Custom Modules
