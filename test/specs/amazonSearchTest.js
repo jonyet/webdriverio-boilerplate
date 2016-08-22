@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
-var Home = require('../../page_objects/amazonPageObjects/amazonhomepage.js');
-var Results = require('../../page_objects/amazonPageObjects/amazonresultspage.js');
+var Home = require('../page_objects/amazonhomepage.js');
+var Results = require('../page_objects/amazonresultspage.js');
 
 describe('Amazon Search Assertion Demo', function () {
 
@@ -25,8 +25,22 @@ describe('Amazon Search Assertion Demo', function () {
       });
       var cleanInteger = integers[1].replace(/,/g, "");
       expect(parseInt(cleanInteger)).to.be.above(0);
-      //replace the above expect() with the below code to see what a failure looks like
-      // expect(parseInt(cleanInteger)).to.be.below(0);
     });
 
 });
+//
+//
+// User = {
+//   first: 'zach',
+//   last: 'hern',
+//   fingers: {
+//     one: true,
+//     two: false,
+//     three: true,
+//     ..
+//   }
+// }
+//
+// User.first = 'zach'
+// User.fingers.two = false
+//

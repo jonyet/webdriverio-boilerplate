@@ -4,19 +4,15 @@ var webdriver = require('gulp-webdriver');
 var opts = {
     logLevel: 'silent',
     waitforTimeout: 10000,
-    reporter: 'spec',
+    reporter: 'dot'
 };
 
-gulp.task('webdriver:suite', ['webdriver:demo']);
+gulp.task('amazon:suite', ['amazon:demo']);
 
 gulp.task('amazon:demo', function() {
-    return gulp.src('./config/wdio.amazon.js').pipe(webdriver(opts));
+    return gulp.src('./test/config/wdio.amazon.js').pipe(webdriver(opts));
 });
 
 gulp.task('visual:demo', function() {
-    return gulp.src('./config/wdio.visual.js').pipe(webdriver(opts));
-});
-
-gulp.task('webdriver:demo', function() {
-    return gulp.src('./config/wdio.config.js').pipe(webdriver(opts));
+    return gulp.src('./test/config/wdio.visual.js').pipe(webdriver(opts));
 });
