@@ -1,13 +1,38 @@
+require('dotenv').config();
 var argv = require('yargs').argv;
+var brow;
+
+(argv.browser) ? (brow = argv.browser) : (brow = 'chrome');
+
+if (argv.remote){
+  var services = ['selenium-standalone', 'browserstack'];
+  var user = process.env.REMOTE_USER;
+  var key = process.env.REMOTE_PASSWORD;
+  var capabilities = [{
+      project: 'Amazon Test Demo',
+      browserName: brow,
+      'browserstack.debug': true,
+      'browser': brow,
+      'resolution': JSON.parse(process.env.DEFAULT_VIEWPORT).width + 'x' + JSON.parse(process.env.DEFAULT_VIEWPORT).height
+  }]
+} else {
+  services = ['selenium-standalone'];
+  capabilities = [{
+      browserName: brow,
+  }]
+};
 
 exports.config = {
 
-  // Comment in the user/key with valid credentials to leverage BS API
-  // user: 'browserstackUsername',
-  // key: 'browserstackPassword',
+  // browserstack credentials
+  user: user,
+  key: key,
 
-  services: ['selenium-standalone'],
+  services: services,
   updateJob: false,
+
+  // use of wdio-browserstack-service for automated local tunneling
+  browserstackLocal: true,
 
   specs: [
       './test/specs/*.js'
@@ -18,10 +43,7 @@ exports.config = {
     // './test/specs/amazonShoppingCart.js'
   ],
 
-  capabilities: [{
-      browserName: 'chrome',
-      'browserstack.debug': true,
-  }],
+  capabilities: capabilities,
 
   logLevel: 'silent',
   coloredLogs: true,
@@ -46,10 +68,11 @@ exports.config = {
   },
 
   framework: 'mocha',
-  reporters: ['dot'/*, allure*/],
+  reporters: ['dot'/*, 'sumologic'*/],
     reporterOptions: {
-        allure: {
-            outputDir: './test/reports/allure-results/'
+        sumologic: {
+          syncInterval: 100,
+          sourceAddress: process.env.SUMO_SOURCE_ADDRESS
         }
     },
 
@@ -70,12 +93,16 @@ exports.config = {
   // Gets executed before test execution begins. At this point you will have access to all global
   // variables like `browser`. It is the perfect place to define custom commands.
   before: function() {
+    browser.setViewportSize(JSON.parse(process.env.DEFAULT_VIEWPORT));
     var Resembler = require('../lib/Resembler');
     var resemble = new Resembler();
+    var chai = require('chai'); //eslint-disable-line no-var
+        global.expect = chai.expect;
+        chai.Should();
 
-    browser.addCommand("assertElementLayout", function async (rootdir, fullscreen, fileName, selector, boolean) {
+    browser.addCommand("assertElementLayout", function async (rootdir, fullscreen, fileName, selector, threshold) {
       return browser.waitUntil(function(){
-        return resemble.assertElementLayout(rootdir, fullscreen, fileName, selector, boolean);
+        return resemble.assertElementLayout(rootdir, fullscreen, fileName, selector, threshold);
       }, 55000, "Promise wasn't returned within 60 seconds", 65000);
     });
   },

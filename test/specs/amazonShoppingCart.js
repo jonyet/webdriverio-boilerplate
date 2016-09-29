@@ -1,4 +1,3 @@
-var expect = require('chai').expect;
 var Home = require('../page_objects/amazonhomepage.js');
 var Cart = require('../page_objects/amazoncartpage.js');
 

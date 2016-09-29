@@ -11,7 +11,7 @@ function Resembler(){
   self = this;
 }
 
-Resembler.prototype.assertElementLayout = function(root, parent, fileName, element){
+Resembler.prototype.assertElementLayout = function(root, parent, fileName, element, threshold){
   if (typeof element === 'object')
     element = element.selector;
   var baselineSuffix = "";
@@ -63,20 +63,20 @@ Resembler.prototype.assertElementLayout = function(root, parent, fileName, eleme
             .ignoreColors()
             .onComplete(function(data){
               logger.info('>> comparison complete');
-              if (Number(data.misMatchPercentage) <= 2) {
+              if (Number(data.misMatchPercentage) <= threshold) {
+                if (Number(data.misMatchPercentage) >= 0.2)
+                  logger.warn(data.misMatchPercentage + '% mismatch detected:', filePath);
                 logger.info('>> mismatch nominal:', data.misMatchPercentage);
-                expect(data.misMatchPercentage).to.be.below(2); //race condition!!! this is fucking your metrics!!!
                 logger.info('>> expectation asserted');
-                resolve(data);                                  //race condition!!! this is fucking your metrics!!!
+                resolve(expect(data.misMatchPercentage).to.be.below(threshold));
               } else {
-                logger.info('>> mismatch out of scope:', data.misMatchPercentage);
-                logger.info('>> generating failure image: ' + (root + fileName + '.failure.png'));
+                logger.error(data.misMatchPercentage + '% mismatch detected: ' + (root + fileName + '.failure.png'));
+                logger.debug('>> generating failure image: ' + (root + fileName + '.failure.png'));
                 var stream = data.getDiffImage().pack().pipe(fs.createWriteStream(root + fileName + '.failure.png'));
                 stream.on('finish', function(){
                   logger.debug('>> stream finished');
-                  expect(data.misMatchPercentage).to.be.below(2);   //race condition!!! this is fucking your metrics!!!
                   logger.debug('>> resolving promise with stream');
-                  resolve(data);                                    //race condition!!! this is fucking your metrics!!!
+                  resolve(expect(data.misMatchPercentage).to.be.below(threshold));
                 });
               };
             });

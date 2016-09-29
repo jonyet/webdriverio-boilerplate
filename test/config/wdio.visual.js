@@ -1,13 +1,25 @@
+require('dotenv').config();
 var argv = require('yargs').argv;
+
+if (argv.remote){
+  var services = ['selenium-standalone', 'browserstack'];
+  var user = process.env.REMOTE_USER;
+  var key = process.env.REMOTE_PASSWORD;
+} else {
+  services = ['selenium-standalone'];
+};
 
 exports.config = {
 
   // Comment in the user/key with valid credentials to leverage BS API
-  // user: 'browserstackUsername',
-  // key: 'browserstackPassword',
+  user: user,
+  key: key,
 
-  services: ['selenium-standalone'],
+  services: services,
   updateJob: false,
+
+  // use of wdio-browserstack-service for automated local tunneling (required for amc work)
+  // browserstackLocal: true,
 
   specs: [
       './test/specs_css/*.js'
@@ -17,6 +29,7 @@ exports.config = {
   ],
 
   capabilities: [{
+      project: 'Amazon Test Demo',
       browserName: 'firefox',
       'browserstack.debug': true,
   }],
@@ -44,7 +57,7 @@ exports.config = {
   },
 
   framework: 'mocha',
-  reporters: ['dot'/*, allure*/],
+  reporters: ['dot'],
     reporterOptions: {
         allure: {
             outputDir: './test/reports/allure-results/'
@@ -68,12 +81,16 @@ exports.config = {
   // Gets executed before test execution begins. At this point you will have access to all global
   // variables like `browser`. It is the perfect place to define custom commands.
   before: function() {
+    browser.setViewportSize(JSON.parse(process.env.DEFAULT_VIEWPORT));
     var Resembler = require('../lib/Resembler');
     var resemble = new Resembler();
+    var chai = require('chai'); //eslint-disable-line no-var
+        global.expect = chai.expect;
+        chai.Should();
 
-    browser.addCommand("assertElementLayout", function async (rootdir, fullscreen, fileName, selector, boolean) {
+    browser.addCommand("assertElementLayout", function async (rootdir, fullscreen, fileName, selector, threshold) {
       return browser.waitUntil(function(){
-        return resemble.assertElementLayout(rootdir, fullscreen, fileName, selector, boolean);
+        return resemble.assertElementLayout(rootdir, fullscreen, fileName, selector, threshold);
       }, 55000, "Promise wasn't returned within 60 seconds", 65000);
     });
   },

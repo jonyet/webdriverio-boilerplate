@@ -1,0 +1,8 @@
+NODE_ENV=dev
+
+REMOTE_USER=username
+REMOTE_PASSWORD=key
+SUMO_SOURCE_ADDRESS=sumoHttpSource
+DEFAULT_VIEWPORT={"width": 1280, "height": 1024}
+TAB_VIEWPORT={"width": 768, "height": 1200}
+MOB_VIEWPORT={"width": 320, "height": 1200}

@@ -7,12 +7,12 @@ var opts = {
     reporter: 'dot'
 };
 
-gulp.task('amazon:suite', ['amazon:demo']);
+gulp.task('amazon:suite', ['amazon:visual']);
 
 gulp.task('amazon:demo', function() {
     return gulp.src('./test/config/wdio.amazon.js').pipe(webdriver(opts));
 });
 
-gulp.task('visual:demo', function() {
+gulp.task('amazon:visual', function() {
     return gulp.src('./test/config/wdio.visual.js').pipe(webdriver(opts));
 });
