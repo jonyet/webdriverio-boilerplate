@@ -1,4 +1,3 @@
-var expect = require('chai').expect;
 var Home = require('../page_objects/amazonhomepage.js');
 
 var root = './test/screenshots/Amazon/Home/'
@@ -14,7 +13,7 @@ describe('Amazon Homepage CSS checks', function () {
     });
 
     it('The Navigation Bar looks correct', function () {
-      browser.assertElementLayout(root, parentShot, 'navbar', Home.navbar);
+      browser.assertElementLayout(root, parentShot, 'navbar', Home.navbar, 2);
     });
 
 });

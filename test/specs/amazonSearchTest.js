@@ -1,4 +1,3 @@
-var expect = require('chai').expect;
 var Home = require('../page_objects/amazonhomepage.js');
 var Results = require('../page_objects/amazonresultspage.js');
 
@@ -28,19 +27,3 @@ describe('Amazon Search Assertion Demo', function () {
     });
 
 });
-//
-//
-// User = {
-//   first: 'zach',
-//   last: 'hern',
-//   fingers: {
-//     one: true,
-//     two: false,
-//     three: true,
-//     ..
-//   }
-// }
-//
-// User.first = 'zach'
-// User.fingers.two = false
-//
