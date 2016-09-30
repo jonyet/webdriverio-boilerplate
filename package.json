@@ -1,5 +1,5 @@
 {
-  "name": "gulp-webdriverio-boilerplate",
+  "name": "webdriverio-boilerplate",
   "version": "1.0.0",
   "description": "boilerplate framework for e2e testing using node and webdriverio",
   "main": "gulpfile.js",
@@ -7,7 +7,6 @@
     "chai": "3.5.0",
     "cheerio": "^0.20.0",
     "easyimage": "^2.1.0",
-    "gulp": "3.9.1",
     "mocha": "2.4.4",
     "mssql": "^3.1.2",
     "node-resemble-js": "0.0.5",
@@ -19,8 +18,6 @@
   "devDependencies": {
     "allure-commandline": "^1.4.22-1",
     "dotenv": "^2.0.0",
-    "gulp-mocha": "2.2.0",
-    "gulp-webdriver": "^2.0.1",
     "selenium-standalone": "^5.1.0",
     "wdio-allure-reporter": "0.0.2",
     "wdio-browserstack-service": "^0.1.3",
@@ -32,9 +29,11 @@
     "webdriverio": "^4.2.8"
   },
   "scripts": {
-    "test": "node_modules/.bin/wdio test/config/wdio.amazon.js",
-    "suite": "gulp webdriver:suite",
-    "report": "allure generate allureReports && allure report open"
+    "test": "npm run testfun && npm run testcss",
+    "testfun": "node_modules/.bin/wdio test/config/wdio.amazon.js",
+    "testcss": "node_modules/.bin/wdio test/config/wdio.visual.js",
+    "testremote": "node_modules/.bin/wdio test/config/wdio.amazon.js --remote=true",
+    "testcssremote": "node_modules/.bin/wdio test/config/wdio.visual.js --remote=true"
   },
   "repository": {
     "type": "git",
