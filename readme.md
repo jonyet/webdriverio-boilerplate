@@ -1,6 +1,6 @@
-## gulp-webriver-boilerplate
+## webriverio-boilerplate
 
-a simple qa automation framework using gulp with webdriverio and mocha
+a simple qa automation framework webdriverio and mocha, designed with high portability as a priority.
 
 **Prerequisites**
 * Java Development Kit 1.8 or greater:  [http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html]
@@ -24,8 +24,10 @@ last, use the `.envschema` file, create a `.env` file with the appropriate envir
 and you should be all set!
 
 ```
-node_modules/.bin/gulp amazon:demo
+npm test
 ```
+
+see the scripts object in the `package.json` for more information on what scripts are available and what they're actually doing.
 
 ## Custom Modules
 
@@ -59,4 +61,4 @@ example provided in `specs_css/amazonvisualregression.js`
 
 **logger.js**
 
-Leveraging the winston module to set log objects and loglevel. currently only utilized for debugging/refactoring the Resembler. sets a nice foundation for logging anything locally as well as to Splunk.
+Leveraging the winston module to set log objects and loglevel. currently only utilized for debugging/refactoring the Resembler. sets a nice foundation for logging anything locally as well as to services like Splunk.
