@@ -37,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jonyet/gulp-webdriverio-boilerplate.git"
+    "url": "https://github.com/jonyet/webdriverio-boilerplate.git"
   },
   "author": "jonathan terry",
   "license": "MIT"
