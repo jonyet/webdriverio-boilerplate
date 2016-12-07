@@ -1,6 +1,6 @@
 ## webriverio-boilerplate
 
-a simple qa automation framework webdriverio and mocha, designed with high portability as a priority.
+a simple test automation framework using webdriverio and mocha, designed with high portability as a priority.
 
 **Prerequisites**
 * Java Development Kit 1.8 or greater:  [http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html]
@@ -19,15 +19,15 @@ install your local dependencies
 npm install
 ```
 
-last, use the `.envschema` file, create a `.env` file with the appropriate environmental settings (mobile/tablet viewports, authentication for browserstack/saucelabs, and sumologic collector info). only the viewport settings are required to run. contact jterry@hugeinc.com if you are in need of valid credentials for browserstack or sumologic.
+last, use the `.envschema` file, create a `.env` file with the appropriate environmental settings (mobile/tablet viewports, authentication for browserstack/saucelabs, and sumologic collector info). only the viewport settings are required to run successfully. i also should note that this framework is designed to be most effectively leveraged in CI settings, ___with a remote service such as Browserstack or Sauce Labs___ where Jenkins/Travis jobs simply run npm install and npm test upon completion of an upstream trigger. it will work locally but is not designed to scale your automation solution from your laptop ;)
 
-and you should be all set!
+anyway, now you should be all set!
 
 ```
-npm test
+npm run testfun
 ```
 
-see the scripts object in the `package.json` for more information on what scripts are available and what they're actually doing.
+see the scripts in `package.json` for more information on what scripts are available and what they're actually doing.
 
 ## Custom Modules
 
@@ -42,7 +42,7 @@ and assert that the changes made to it are within reason (default is 0.05% misma
 
 unfortunately, webdrivercss has been deprecated since wdio v2. this Resembler class i've added
 is a workaround for said deprecated plugin. it uses similiar (if not the same) modules in
-order to effectively accomplish the same visual regression task. currently recommended to be used with firefox, as the chromedriver v2+ team refuses to acknowledge the need to fix a broken feature (full document screenshots).
+order to effectively accomplish the same visual regression task. _currently required to be used with firefox_ and recommended with very tight control over the environment in which the tests will be conducted (see `capabilities` in `wdio.visual.js`). the chromedriver v2+ team evidently refuses to acknowledge the need to fix a broken feature (full document screenshots), which is a core dependency for the feature. mozilla has recently joined this problem as well, breaking full DOM screenshots for versions 48 and higher.
 
 Usage:
 
