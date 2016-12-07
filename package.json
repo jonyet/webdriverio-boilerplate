@@ -1,39 +1,42 @@
 {
   "name": "webdriverio-boilerplate",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "boilerplate framework for e2e testing using node and webdriverio",
-  "main": "gulpfile.js",
+  "main": "wdio.amazon.js",
   "dependencies": {
+    "selenium-standalone": "^5.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-register": "^6.18.0",
     "chai": "3.5.0",
     "cheerio": "^0.20.0",
+    "dotenv": "^2.0.0",
     "easyimage": "^2.1.0",
     "mocha": "2.4.4",
     "mssql": "^3.1.2",
     "node-resemble-js": "0.0.5",
     "underscore": "^1.8.3",
-    "webdrivercss": "github:kevinlambert/webdrivercss#wdio4-compatible",
-    "winston": "^2.2.0",
-    "yargs": "^4.7.1"
-  },
-  "devDependencies": {
-    "allure-commandline": "^1.4.22-1",
-    "dotenv": "^2.0.0",
-    "selenium-standalone": "^5.1.0",
-    "wdio-allure-reporter": "0.0.2",
     "wdio-browserstack-service": "^0.1.3",
     "wdio-mocha-framework": "^0.2.11",
     "wdio-screenshot": "^0.1.1",
-    "wdio-selenium-standalone-service": "0.0.5",
+    "wdio-selenium-standalone-service": "0.0.7",
     "wdio-spec-reporter": "0.0.3",
     "wdio-sumologic-reporter": "0.0.3",
-    "webdriverio": "^4.2.8"
+    "webdriverio": "^4.4.0",
+    "winston": "^2.2.0",
+    "yargs": "^4.7.1"
   },
   "scripts": {
-    "test": "npm run testfun && npm run testcss",
-    "testfun": "node_modules/.bin/wdio test/config/wdio.amazon.js",
-    "testcss": "node_modules/.bin/wdio test/config/wdio.visual.js",
-    "testremote": "node_modules/.bin/wdio test/config/wdio.amazon.js --remote=true",
-    "testcssremote": "node_modules/.bin/wdio test/config/wdio.visual.js --remote=true"
+    "build": "babel src -d test --quiet",
+    "test": "npm run build && npm run testremote:nobuild && npm run testcssremote:nobuild",
+    "testfun": "npm run build && node_modules/.bin/wdio test/config/wdio.amazon.js",
+    "testcss": "npm run build && node_modules/.bin/wdio test/config/wdio.visual.js",
+    "testremote": "npm run build && node_modules/.bin/wdio test/config/wdio.amazon.js --remote=true",
+    "testremote:nobuild": "node_modules/.bin/wdio test/config/wdio.amazon.js --remote=true",
+    "testcssremote": "npm run build && node_modules/.bin/wdio test/config/wdio.visual.js --remote=true",
+    "testcssremote:nobuild": "node_modules/.bin/wdio test/config/wdio.visual.js --remote=true"
   },
   "repository": {
     "type": "git",
