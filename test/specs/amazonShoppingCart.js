@@ -1,31 +1,23 @@
-'use strict';
+import Home from '../page_objects/amazonhomepage.js';
+import Cart from '../page_objects/amazoncartpage.js';
 
-var _amazonhomepage = require('../page_objects/amazonhomepage.js');
+describe('Amazon Search Assertion Demo', () => {
 
-var _amazonhomepage2 = _interopRequireDefault(_amazonhomepage);
+    before('On the Amazon home page...', () => {
+      Home.open();
+      Home.searchBar.waitForExist();
+      Home.searchBar.waitForVisible();
+    });
 
-var _amazoncartpage = require('../page_objects/amazoncartpage.js');
+    it('A user clicks the shopping cart', () => {
+      Home.shoppingCart.click();
+    });
 
-var _amazoncartpage2 = _interopRequireDefault(_amazoncartpage);
+    it('A user is taken to the shopping cart page', () => {
+      Cart.cartSize.waitForExist();
+      Cart.cartSize.waitForVisible();
+      const size = Cart.cartSize.getText();
+      expect(size).to.equal('Your Shopping Cart is empty.');
+    });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-describe('Amazon Search Assertion Demo', function () {
-
-  before('On the Amazon home page...', function () {
-    _amazonhomepage2.default.open();
-    _amazonhomepage2.default.searchBar.waitForExist();
-    _amazonhomepage2.default.searchBar.waitForVisible();
-  });
-
-  it('A user clicks the shopping cart', function () {
-    _amazonhomepage2.default.shoppingCart.click();
-  });
-
-  it('A user is taken to the shopping cart page', function () {
-    _amazoncartpage2.default.cartSize.waitForExist();
-    _amazoncartpage2.default.cartSize.waitForVisible();
-    var size = _amazoncartpage2.default.cartSize.getText();
-    expect(size).to.equal('Your Shopping Cart is empty.');
-  });
 });
