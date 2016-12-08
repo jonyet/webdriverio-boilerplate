@@ -1,17 +1,30 @@
-import dotenv from 'dotenv'
-dotenv.config()
-import {argv} from 'yargs';
-import seleniumArgs from './selenium-defaults';
+require('dotenv').config();
+var argv = require('yargs').argv;
+var seleniumArgs = require('./selenium-defaults');
+
+let brow, services, user, key, capabilities
+
+(argv.browser) ? (brow = argv.browser) : (brow = 'chrome');
 
 if (argv.remote){
-  var services = ['browserstack'];
-  var user = process.env.REMOTE_USER;
-  var key = process.env.REMOTE_PASSWORD;
+  services = ['browserstack'];
+  user = process.env.REMOTE_USER;
+  key = process.env.REMOTE_PASSWORD;
+  capabilities = [{
+      project: `Amazon Test Demo: ${brow}`,
+      browserName: brow,
+      'browserstack.debug': true,
+      'browser': brow,
+      'resolution': `${JSON.parse(process.env.DEFAULT_VIEWPORT).width}x${JSON.parse(process.env.DEFAULT_VIEWPORT).height}`
+  }]
 } else {
-  services = ['selenium-standalone'];
+  services = ['selenium-standalone'],
+  capabilities = [{
+      browserName: brow
+  }]
 }
 
-export const config = {
+exports.config = {
 
   // browserstack credentials
   user,
@@ -27,22 +40,15 @@ export const config = {
   browserstackLocal: true,
 
   specs: [
-      './test/specs_css/*.js'
+      './test/specs/*.js'
   ],
   // Patterns to exclude.
   exclude: [
+    // './test/specs/amazonSearchTest.js',
+    // './test/specs/amazonShoppingCart.js'
   ],
 
-  capabilities: [{
-    project: 'Amazon Test Demo',
-    'browserstack.debug': true,
-    'browserstack.local': true,
-    'os': 'OS X',
-    'os_version': 'El Capitan',
-    'browser': 'Firefox',
-    'browser_version': '47.0',
-    'resolution': `${JSON.parse(process.env.DEFAULT_VIEWPORT).width}x${JSON.parse(process.env.DEFAULT_VIEWPORT).height}`
-  }],
+  capabilities,
 
   logLevel: 'silent',
   coloredLogs: true,
@@ -77,6 +83,7 @@ export const config = {
 
   mochaOpts: {
       ui: 'bdd',
+      compilers: ['js:babel-register'],
       timeout: 60000
   },
 
@@ -93,11 +100,11 @@ export const config = {
   // variables like `browser`. It is the perfect place to define custom commands.
   before() {
     browser.setViewportSize(JSON.parse(process.env.DEFAULT_VIEWPORT));
+    const Resembler = require('../lib/Resembler');
+    const resemble = new Resembler();
     const chai = require('chai');
         global.expect = chai.expect;
         chai.Should();
-    const Resembler = require('../lib/Resembler');
-    const resemble = new Resembler();
 
     browser.addCommand("assertElementLayout", function async (rootdir, fullscreen, fileName, selector, threshold) {
       return browser.waitUntil(() => resemble.assertElementLayout(rootdir, fullscreen, fileName, selector, threshold), 55000, "Promise wasn't returned within 60 seconds", 65000);

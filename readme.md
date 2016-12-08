@@ -19,7 +19,7 @@ install your local dependencies
 npm install
 ```
 
-last, use the `.envschema` file, create a `.env` file with the appropriate environmental settings (mobile/tablet viewports, authentication for browserstack/saucelabs, and sumologic collector info). only the viewport settings are required to run successfully. i also should note that this framework is designed to be most effectively leveraged in CI settings, ___with a remote service such as Browserstack or Sauce Labs___ where Jenkins/Travis jobs simply run npm install and npm test upon completion of an upstream trigger. it will work locally but is not designed to scale your automation solution from your laptop ;)
+last, use the `.envschema` file, create a `.env` file with the appropriate environmental settings (mobile/tablet viewports, authentication for browserstack/saucelabs, and sumologic collector info). only the viewport settings are required to run successfully. i also should note that this framework is designed to be most effectively leveraged in CI settings ___with a remote service such as Browserstack or Sauce Labs___ where Jenkins/Travis jobs simply run npm install and npm test upon completion of an upstream trigger. it will work locally but is not designed to scale your automation solution from your laptop ;)
 
 anyway, now you should be all set!
 
@@ -42,7 +42,7 @@ and assert that the changes made to it are within reason (default is 0.05% misma
 
 unfortunately, webdrivercss has been deprecated since wdio v2. this Resembler class i've added
 is a workaround for said deprecated plugin. it uses similiar (if not the same) modules in
-order to effectively accomplish the same visual regression task. _currently required to be used with firefox_ and recommended with very tight control over the environment in which the tests will be conducted (see `capabilities` in `wdio.visual.js`). the chromedriver v2+ team evidently refuses to acknowledge the need to fix a broken feature (full document screenshots), which is a core dependency for the feature. mozilla has recently joined this problem as well, breaking full DOM screenshots for versions 48 and higher.
+order to effectively accomplish the same visual regression task. it should be used with very tight control over the platform/browser in which the tests will be conducted (see `capabilities` in `wdio.visual.js`). _mozilla has recently broken full DOM screenshots for versions 48 and higher. use chrome or firefox v47._
 
 Usage:
 

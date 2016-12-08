@@ -27,7 +27,6 @@ node_modules
 *.diff.*
 *.failure.*
 errors
-test
 errScreens
 
 # Users Environment Variables

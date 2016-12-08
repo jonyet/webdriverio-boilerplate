@@ -1,6 +1,6 @@
 import Home from '../page_objects/amazonhomepage.js';
 
-const root = './src/screenshots/Amazon/Home/';
+const root = './test/screenshots/Amazon/Home/';
 const parentShot = `${root}_amazonHomepage.png`;
 
 describe('Amazon Homepage CSS checks', () => {
@@ -9,7 +9,7 @@ describe('Amazon Homepage CSS checks', () => {
       Home.open();
       Home.searchBar.waitForExist();
       Home.searchBar.waitForVisible();
-      browser.saveScreenshot(parentShot);
+      browser.saveDocumentScreenshot(parentShot);
     });
 
     it('The Navigation Bar looks correct', () => {

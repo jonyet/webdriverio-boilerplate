@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   baseURL: 'https://selenium-release.storage.googleapis.com',
   version: '3.0.1',
   drivers: {
