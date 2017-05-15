@@ -13,6 +13,7 @@ if (argv.remote){
   capabilities = [{
       project: `Amazon Test Demo: ${brow}`,
       browserName: brow,
+      chromeOptions: { args: ['disable-infobars'] },
       'browserstack.debug': true,
       'browser': brow,
       'resolution': `${JSON.parse(process.env.DEFAULT_VIEWPORT).width}x${JSON.parse(process.env.DEFAULT_VIEWPORT).height}`
@@ -20,7 +21,8 @@ if (argv.remote){
 } else {
   services = ['selenium-standalone'],
   capabilities = [{
-      browserName: brow
+      browserName: brow,
+      chromeOptions: { args: ['disable-infobars'] }
   }]
 }
 

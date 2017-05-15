@@ -1,6 +1,6 @@
 ## webriverio-boilerplate
 
-a simple test automation framework using webdriverio and mocha, designed with high portability as a priority.
+a simple front-end test automation framework using webdriverio and mocha, designed with high portability as a priority. the principal directive is to use this boilerplate to write front-end functional tests - a jenkins CI job would trigger the test runs, which would execute in a test service like browserstack, on whatever permutation of browsers and platforms desired.
 
 **Prerequisites**
 * Java Development Kit 1.8 or greater:  [http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html]
@@ -19,7 +19,13 @@ install your local dependencies
 npm install
 ```
 
-last, use the `.envschema` file, create a `.env` file with the appropriate environmental settings (mobile/tablet viewports, authentication for browserstack/saucelabs, and sumologic collector info). only the viewport settings are required to run successfully. i also should note that this framework is designed to be most effectively leveraged in CI settings ___with a remote service such as Browserstack or Sauce Labs___ where Jenkins/Travis jobs simply run npm install and npm test upon completion of an upstream trigger. it will work locally but is not designed to scale your automation solution from your laptop ;)
+last, use the `.envschema` file, create a `.env` file with the appropriate environmental settings (mobile/tablet viewports, authentication for browserstack/saucelabs, and sumologic collector info). only the viewport settings are required to run successfully, so the below will suffice initially.
+
+```
+cp .envschema .env
+```
+
+this framework is designed to be most effectively leveraged in CI settings, ___with a remote service such as Browserstack or Sauce Labs___ where Jenkins/Travis jobs simply run npm install and npm test upon completion of an upstream trigger. the `.env` file is where you will store your credentials for these services, such that they aren't committed. it will work locally but is not designed to scale from your laptop ;)
 
 anyway, now you should be all set!
 
@@ -30,6 +36,8 @@ npm run testfun
 see the scripts in `package.json` for more information on what scripts are available and what they're actually doing.
 
 ## Custom Modules
+
+there is also some ancillary functionality baked into the system via two additional modules:
 
 - Resembler.js
 - logger.js
@@ -61,4 +69,4 @@ example provided in `specs_css/amazonvisualregression.js`
 
 **logger.js**
 
-Leveraging the winston module to set log objects and loglevel. currently only utilized for debugging/refactoring the Resembler. sets a nice foundation for logging anything locally as well as to services like Splunk.
+Leverages the winston module to set log objects and loglevel. currently only utilized for debugging/refactoring the Resembler. sets a nice foundation for logging anything locally as well as to extraneous services like Splunk or Sumologic.

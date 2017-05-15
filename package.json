@@ -30,7 +30,7 @@
   },
   "scripts": {
     "test": "npm run testremote && npm run testcssremote",
-    "testfun": "node_modules/.bin/wdio test/config/wdio.amazon.js",
+    "start": "node_modules/.bin/wdio test/config/wdio.amazon.js",
     "testcss": "node_modules/.bin/wdio test/config/wdio.visual.js",
     "testremote": "node_modules/.bin/wdio test/config/wdio.amazon.js --remote=true",
     "testcssremote": "node_modules/.bin/wdio test/config/wdio.visual.js --remote=true"

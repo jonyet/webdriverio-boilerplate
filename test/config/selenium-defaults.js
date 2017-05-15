@@ -3,14 +3,19 @@ module.exports = {
   version: '3.0.1',
   drivers: {
     chrome: {
-      version: '2.25',
+      version: '2.28',
       arch: process.arch,
       baseURL: 'https://chromedriver.storage.googleapis.com'
     },
     firefox: {
-      version: '0.11.1',
+      version: '0.13.0',
       arch: process.arch,
       baseURL: 'https://github.com/mozilla/geckodriver/releases/download'
+    },
+    ie: {
+      version: '3.0.0',
+      arch: process.arch,
+      baseURL: 'https://selenium-release.storage.googleapis.com'
     }
   }
 };
