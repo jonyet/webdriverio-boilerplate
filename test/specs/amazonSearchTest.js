@@ -11,7 +11,7 @@ describe('Amazon Search Assertion Demo', () => {
 
     it('A user searches for "qa testing"', () => {
       Home.searchBar.click();
-      Home.searchBar.keys('qa testing');
+      Home.searchBar.setValue('qa testing');
       Home.submitSearch.click();
     });
 
