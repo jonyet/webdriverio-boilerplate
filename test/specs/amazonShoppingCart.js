@@ -1,7 +1,7 @@
 import Home from '../page_objects/amazonhomepage.js';
 import Cart from '../page_objects/amazoncartpage.js';
 
-describe('Amazon Search Assertion Demo', () => {
+describe('Amazon Shopping Cart Assertion Demo', () => {
 
     before('On the Amazon home page...', () => {
       Home.open();

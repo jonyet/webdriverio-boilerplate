@@ -75,7 +75,7 @@ exports.config = {
   },
 
   framework: 'mocha',
-  reporters: ['dot'/*, 'sumologic'*/],
+  reporters: ['spec'/*, 'sumologic'*/],
     reporterOptions: {
         sumologic: {
           syncInterval: 100,

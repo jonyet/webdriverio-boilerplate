@@ -9,7 +9,7 @@ describe('Amazon Search Assertion Demo', () => {
       Home.searchBar.waitForVisible();
     });
 
-    it('A user searches for "qa testing" and submits', () => {
+    it('A user searches for "qa testing"', () => {
       Home.searchBar.click();
       Home.searchBar.keys('qa testing');
       Home.submitSearch.click();
@@ -19,6 +19,7 @@ describe('Amazon Search Assertion Demo', () => {
       Results.resultsCount.waitForExist();
       Results.resultsCount.waitForVisible();
       const results = Results.resultsCount.getText();
+      //e.g. 1-16 of 269 results for "qa testing"
       const integers = results.split(" ").filter(function(int) {
         return int.match(/\d+/g);
       });

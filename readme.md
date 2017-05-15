@@ -11,7 +11,7 @@ brew install imagemagick
 
 **Get started**
 
-install git & nodejs/npm (i suggest via nvm [https://github.com/creationix/nvm/blob/master/README.markdown], using node 6.3.0 & npm 3.10.3)
+install git & nodejs/npm (i suggest via nvm [https://github.com/creationix/nvm/], using node 6.3.0 & npm 3.10.3)
 
 install your local dependencies
 
@@ -30,7 +30,7 @@ this framework is designed to be most effectively leveraged in CI settings, ___w
 anyway, now you should be all set!
 
 ```
-npm run testfun
+npm run start
 ```
 
 see the scripts in `package.json` for more information on what scripts are available and what they're actually doing.

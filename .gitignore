@@ -28,6 +28,7 @@ node_modules
 *.failure.*
 errors
 errScreens
+.err
 
 # Users Environment Variables
 .lock-wscript
