@@ -19,7 +19,7 @@ describe('Amazon Search Assertion Demo', () => {
       Results.resultsCount.waitForExist();
       Results.resultsCount.waitForVisible();
       const results = Results.resultsCount.getText();
-      //e.g. 1-16 of 269 results for "qa testing"
+      // console.log(results);
       const integers = results.split(" ").filter(function(int) {
         return int.match(/\d+/g);
       });
