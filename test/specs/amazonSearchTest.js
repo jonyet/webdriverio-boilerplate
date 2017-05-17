@@ -18,13 +18,10 @@ describe('Amazon Search Assertion Demo', () => {
     it('Shows a positive number of results', () => {
       Results.resultsCount.waitForExist();
       Results.resultsCount.waitForVisible();
-      const results = Results.resultsCount.getText();
-      // console.log(results);
-      const integers = results.split(" ").filter(function(int) {
-        return int.match(/\d+/g);
-      });
-      const cleanInteger = integers[1].replace(/,/g, "");
-      expect(parseInt(cleanInteger)).to.be.above(0);
+      //regex drags nums out of results text and pushes to an array
+      const regex = /\d\s*\-\s*(\d+){1}\s*(?:of)?(\s*\d+)?\s*.*/g
+      const nums = regex.exec(Results.resultsCount.getText());
+      expect(parseInt(nums[1])).to.be.above(0);
     });
 
 });

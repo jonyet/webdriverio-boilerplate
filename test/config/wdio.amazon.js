@@ -17,7 +17,19 @@ if (argv.remote){
       'browserstack.debug': true,
       'browser': brow,
       'resolution': `${JSON.parse(process.env.DEFAULT_VIEWPORT).width}x${JSON.parse(process.env.DEFAULT_VIEWPORT).height}`
-  }]
+  }
+  // , {
+  //     project: `Amazon Test Demo: firefox`,
+  //     'browserstack.debug': true,
+  //     'browserstack.local': true,
+  //     'os': 'Windows',
+  //     'os_version': '7',
+  //     'browser': 'Firefox',
+  //     'browserName': 'Firefox',
+  //     // 'browser_version': '50',
+  //     'resolution': `${JSON.parse(process.env.DEFAULT_VIEWPORT).width}x${JSON.parse(process.env.DEFAULT_VIEWPORT).height}`
+  // }
+]
 } else {
   services = ['selenium-standalone'],
   capabilities = [{
