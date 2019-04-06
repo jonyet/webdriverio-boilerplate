@@ -1,7 +1,7 @@
 {
-  "name": "huge.webdriverio-boilerplate",
+  "name": "webdriverio-boilerplate",
   "version": "3.0.0",
-  "description": "boilerplate framework for e2e testing using node and webdriverio",
+  "description": "boilerplate framework for testing using node and webdriverio",
   "main": "wdio.conf.js",
   "scripts": {
     "test": "node_modules/.bin/wdio examples/Amazon/wdio.conf.js",
