@@ -6,7 +6,7 @@ exports.config = Object.assign(master.config, {
   logLevel: 'error',
   suites: {
     dev : ["./examples/Amazon/E2E/searchExample.test.js"],
-    integration : ["./examples/Amazon/Integration/*.test.js"],
+    integration : ["./examples/Amazon/Integration/**/*.test.js"],
     e2e : ["./examples/Amazon/E2E/*.test.js"]
   },
   reporters: ["spec"],
