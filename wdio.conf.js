@@ -1,7 +1,16 @@
-require("dotenv").config();
+const fs = require('fs')
+const path = './.env'
+
+try {
+  if (fs.existsSync(path)) {
+    require("dotenv").config();
+  }
+} catch(err) {
+  console.log('No .env file found')
+}
 
 exports.config = {  
-  services: ["firefox-profile", "selenium-standalone", "chromedriver"],
+  services: ["selenium-standalone", "chromedriver"],
   capabilities: [
     {
       "browserName": "chrome",
