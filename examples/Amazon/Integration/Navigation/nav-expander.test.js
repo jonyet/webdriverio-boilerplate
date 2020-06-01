@@ -13,6 +13,7 @@ describe("Navigation : hamburger open/close", () => {
     Navigation.hamburger.click()
     Navigation.hamburger.waitForDisplayed(undefined, true)
     Navigation.closeExpandedNav.waitForDisplayed()
+    Navigation.closeExpandedNav.waitForClickable()
     expect(Navigation.expandedNav.isDisplayed()).to.be.equal(true)
   })
 
@@ -20,7 +21,7 @@ describe("Navigation : hamburger open/close", () => {
     Navigation.closeExpandedNav.click()
     Navigation.closeExpandedNav.waitForDisplayed(undefined, true)
     Navigation.hamburger.waitForDisplayed()
-    browser.pause(500)
+    Navigation.hamburger.waitForClickable()
     expect(Navigation.expandedNav.isDisplayed()).to.be.equal(false)
   })
 })
