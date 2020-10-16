@@ -1,38 +1,34 @@
 import Page from './Page'
 
 class Navigation extends Page {
-  
-  get searchBar()  { 
-      return $('#twotabsearchtextbox')
+  get searchBar() {
+    return $('#twotabsearchtextbox')
   }
-  get submitSearch()  { 
-      return $('input.nav-input')
+  get submitSearch() {
+    return $('[aria-label="Go"]')
   }
-  get shoppingCart()  { 
-      return $('#nav-cart')
+  get shoppingCart() {
+    return $('#nav-cart')
   }
-  get hamburger()  { 
+  get hamburger() {
     return $('#nav-hamburger-menu')
   }
-  get expandedNav()  { 
+  get expandedNav() {
     return $('#hmenu-canvas')
   }
-  get closeExpandedNav()  { 
+  get closeExpandedNav() {
     return $('[class="nav-sprite hmenu-close-icon"]')
   }
-  get signInFlyout()  { 
+  get signInFlyout() {
     return $('[class="nav-signin-tt nav-flyout"]')
   }
-  get signInTooltip()  { 
+  get signInTooltip() {
     return $('#nav-signin-tooltip')
   }
-  get signInTooltipButton()  { 
+  get signInTooltipButton() {
     return $('[data-nav-ref="nav_custrec_signin"]')
   }
-  get signInTooltipLink()  { 
-    return $('#nav-signin-tooltip > div > a')
-  }
- 
+
   open(path) {
     super.open(path)
   }
