@@ -15,7 +15,7 @@ clone the project
 adopt the proper node version
 
 ```
-nmv use
+nvm use
 ```
 
 install your dependencies
