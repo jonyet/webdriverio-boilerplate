@@ -12,6 +12,12 @@ install the latest stable version of node (suggest via nvm [https://github.com/c
 
 clone the project
 
+adopt the proper node version
+
+```
+nmv use
+```
+
 install your dependencies
 
 ```
