@@ -18,5 +18,8 @@ exports.config = Object.assign(master.config, {
         args: ['disable-infobars'],
       },
     },
+    // {
+    //   browserName: 'firefox'
+    // }
   ],
 })
